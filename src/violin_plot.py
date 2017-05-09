@@ -35,7 +35,7 @@ def violin_plot(axis,data,color='blue',alpha=1, x_offset=0,interpolate_zeros=Tru
 
      # plot median
      med = np.median(data)
-     closest_bin = find_nearest(density['x'],mean)
+     closest_bin = find_nearest(density['x'],median)
      r = density['v'][density['x']==closest_bin]+x_offset
      l = -density['v'][density['x']==closest_bin]+x_offset
      axis.plot([r,l],[med,med],'-',color='black')
