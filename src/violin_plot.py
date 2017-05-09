@@ -15,9 +15,9 @@ def pdf(serie,nbins=100,zeros=True):
      return {'x':x,'v':v}
 
 
-def violin_plot(axis,data,x_offset=0):
+def violin_plot(axis,data,color='blue',alpha=1, x_offset=0):
      if len(data.shape)>1:
           data=data.reshape(data.size)
      density = pdf(data)
-     axis.fill_betweenx(density['x']+x_offset,x1=density['v'],x2=-density['v'])
+     axis.fill_betweenx(density['x']+x_offset,x1=density['v'],x2=-density['v'],facecolor=color,alpha=alpha)
     
