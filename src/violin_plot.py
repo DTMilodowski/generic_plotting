@@ -1,6 +1,6 @@
 from scipy.stats import nanmean, gaussian_kde
 from matplotlib import pyplot as plt
-
+import numpy as np
 def pdf(serie,nbins=100,zeros=True):
      'returns pdf (x,y) from a serie with nbins'
      k = gaussian_kde(serie) #kernel density
@@ -15,6 +15,9 @@ def pdf(serie,nbins=100,zeros=True):
      return {'x':x,'v':v}
 
 
-def violin_plot(axis,data):
-    density = pdf(your_data)
-    axis.fill_betweenx(density['x'],x1=density['v'],x2=-density['v'])
+def violin_plot(axis,data,x_offset=0):
+     if len(data.shape)>1:
+          data=data.reshape(data.size)
+     density = pdf(data)
+     axis.fill_betweenx(density['x']+x_offset,x1=density['v'],x2=-density['v'])
+    
